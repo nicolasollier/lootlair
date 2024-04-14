@@ -1,4 +1,4 @@
-const mysql = require('mysql2')
+const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 const env = process.env.NODE_ENV;
 
