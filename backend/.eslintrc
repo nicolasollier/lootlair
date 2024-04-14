@@ -1,0 +1,12 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "process": true
+  },
+  "rules": {
+    "@typescript-eslint/no-var-requires": 0
+  }
+}
