@@ -1,19 +1,25 @@
-import express from "express"
-import session from 'express-session';
-import { params } from "./config/sessionParams.js"
-import helmet from 'helmet'
-import passport from 'passport';
-import router from './router/router.js'
+const express = require("express");
+const session = require('express-session');
+const helmet = require('helmet');
+const passport = require('passport');
 
-const app = express()
-const PORT = process.env.PORT || 3000
+const app = express();
+const PORT = process.env.PORT || 3000;
+const session_params = {
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+}
 
-app.use(helmet())
-app.use(session(params))
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(helmet());
+app.use(session(session_params));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use("/", router)
+app.get('/', (req, res) => {
+  res.send('hello world')
+})
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

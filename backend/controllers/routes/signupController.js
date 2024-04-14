@@ -1,3 +1,3 @@
-export const signupController = (req, res) => {
+const signupController = (req, res) => {
   res.send('Signup successfull')
 }

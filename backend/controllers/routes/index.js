@@ -1,9 +1,9 @@
-import { homeController } from './homeController.js';
-import { loginController } from './loginController.js';
-import { signupController } from './signupController.js';
+const { homeController } = require('./homeController.js');
+const { loginController } = require('./loginController.js');
+const { signupController } = require('./signupController.js');
 
-export {
+module.exports = {
   homeController,
   loginController,
   signupController,
-}
+};
