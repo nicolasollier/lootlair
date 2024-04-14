@@ -10,5 +10,4 @@ router.get('/', homeController.sendWelcome);
 router.post('/login', loginController.loginSuccessfull)
 router.post('/signup', signupController.signupSuccessfull)
 
-
 module.exports = router;
