@@ -1,16 +1,19 @@
 'use strict';
+const models = require("../models");
+const User = models.User;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Users', [
+    return User.bulkCreate([
       {
-        username: "Demouser",
-        mail: 'demouser@mail.com',
+        username: "sampleUser",
+        mail: 'sampleUser@mail.com',
+        password: 'password123',
         created_at: new Date(),
         updated_at: new Date(),
       }
-    ])
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
