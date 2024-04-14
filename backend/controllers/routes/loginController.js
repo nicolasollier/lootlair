@@ -1,3 +1,3 @@
-const loginController = (req, res) => {
-  res.send('Login successfull')
+exports.loginSuccessfull = (req, res) => {
+  res.send('Login Successfull')
 }

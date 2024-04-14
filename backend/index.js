@@ -3,6 +3,7 @@ const session = require('express-session');
 const params = require('./config/session.js')
 const helmet = require('helmet');
 const passport = require('passport');
+const router = require('./router/router.js')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,9 +13,7 @@ app.use(session(params));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.use('/', router)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
