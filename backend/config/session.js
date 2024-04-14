@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const params = {
-  secret: 'your_secret_key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: true },
