@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     static hashPassword(password) {
       return bcrypt.hash(password, saltRounds);
     }
+
+    static associate(models) {
+      User.hasOne(models.Shop, { foreignKey: 'user_id', as: 'shop' });
+    }
   }
 
   User.init({
@@ -15,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     mail: DataTypes.STRING,
     password: DataTypes.STRING,
     created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE
+    updated_at: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'User',
@@ -23,15 +27,11 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     underscored: true,
-  });
+  })
 
   async function hashUserPassword(user) {
     user.password = await User.hashPassword(user.password);
   }
-
-  User.beforeBulkCreate(async (users, options) => {
-    await Promise.all(users.map(user => hashUserPassword(user)));
-  });
 
   User.beforeCreate(async (user, options) => {
     await hashUserPassword(user);
